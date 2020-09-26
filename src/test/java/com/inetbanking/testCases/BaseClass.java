@@ -7,17 +7,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+import com.inetbanking.utilities.ReadConfig;
+
 public class BaseClass {
 	
-	public String baseURL = "http://demo.guru99.com/V4/";
-	public String username = "mngr285799";
-	public String password = "usAqYsu";
+	ReadConfig readConfig = new ReadConfig();
+	
+	public String baseURL = readConfig.getApplicationURL();
+	public String username = readConfig.getUser();
+	public String password = readConfig.getPassword();
+	public String chromepath = readConfig.getChromePath();
+	public String firefoxpath = readConfig.getFirefoxPath();
+	
 	public static WebDriver driver;
 	public static Logger logger;
 	
 	@BeforeClass
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/Drivers/chromedriver");
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + chromepath);
 		driver = new ChromeDriver();
 		
 		logger = Logger.getLogger("ebanking");
