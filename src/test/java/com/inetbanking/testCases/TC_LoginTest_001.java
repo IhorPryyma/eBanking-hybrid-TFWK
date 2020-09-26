@@ -1,5 +1,7 @@
 package com.inetbanking.testCases;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,7 +10,7 @@ import com.inetbanking.pageObjects.LoginPage;
 public class TC_LoginTest_001 extends BaseClass {
 	
 	@Test
-	public void loginTest() {
+	public void loginTest() throws IOException {
 
 		logger.info("URL is opened: " + baseURL);
 		
@@ -24,6 +26,7 @@ public class TC_LoginTest_001 extends BaseClass {
 			Assert.assertTrue(true);
 			logger.info("Testcase passed");
 		} else {
+			captureScreen(driver, "loginTest");
 			Assert.assertTrue(false);
 			logger.info("Testcase failed");
 		}
